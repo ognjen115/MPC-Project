@@ -6,6 +6,8 @@
 % Please see the LICENSE file that has been included as part of this package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% TASK3
+
 function [Hu, hu, Hx, hx] = generate_constraints_cc(params)
     % Extract state bounds
     T1_min = params.constraints.T1Min;
