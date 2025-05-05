@@ -18,10 +18,15 @@ function [Xsim, Usim, ctrl_info] = simulate(x0, ctrl, params)
     % Preallocate
     Xsim = zeros(nx, N+1);  % x(0)...x(N)
     Usim = zeros(nu, N);    % u(0)...u(N-1)
-    ctrl_info(1:N) = struct('ctrl_feas', false);  % preallocate struct array
+
+    %ctrl_info(1:N) = struct('ctrl_feas', false);  % preallocate struct array
 
     % Initial state
     Xsim(:,1) = x0;
+
+    % Initialize first control step to extract structure
+    [~, info_template] = ctrl.eval(x0);
+    ctrl_info = repmat(info_template, 1, N);
 
     % Loop
     for k = 1:N
