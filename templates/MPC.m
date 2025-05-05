@@ -6,6 +6,8 @@
 % Please see the LICENSE file that has been included as part of this package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% TASK14
+
 classdef MPC
     properties
         yalmip_optimizer
@@ -36,7 +38,7 @@ classdef MPC
             disp(['nx: ', num2str(nx), ', nu: ', num2str(nu)]);
 
             % Compute LQR infinite-horizon cost for terminal cost l(x_N)
-            [~, P, ~] = dlqr(A, B, Q, R); % Corrected: P is the second output (DARE solution)
+            [~, P, ~] = dlqr(A, B, Q, R); 
             disp(['Size of P: ', mat2str(size(P))]);
 
             % Verify dimensions match
