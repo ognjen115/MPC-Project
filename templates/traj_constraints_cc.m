@@ -6,6 +6,8 @@
 % Please see the LICENSE file that has been included as part of this package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%  TASK10
+
 function [T1_max, T2_min, T2_max, P1_min, P1_max, P2_min, P2_max, input_cost, cstr_viol] = traj_constraints_cc(Xsim, Usim, params)
     % Extract constraints
     c = params.constraints;
@@ -48,9 +50,9 @@ function [T1_max, T2_min, T2_max, P1_min, P1_max, P2_min, P2_max, input_cost, cs
     fprintf('    Input energy cost: %.4f\n', input_cost);
 
     if cstr_viol
-        fprintf('    ❌ Constraint violation detected!\n');
+        fprintf('     Constraint violation detected!\n');
     else
-        fprintf('    ✅ All constraints satisfied.\n');
+        fprintf('     All constraints satisfied.\n');
     end
 end
 
