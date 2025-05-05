@@ -6,16 +6,15 @@
 % Please see the LICENSE file that has been included as part of this package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%  TASK11
+
 % CONTINUE BELOW THIS LINE
 % LQR Tuning Script for Task 11
 
 % Initial weights from exercise script
 Q = diag([10, 110, 1]);
-R = diag([17, 9] * 1e-5);
-
-% Define initial Q and R (manually tuned)
-%Q = diag([13.5, 250, 0.1]);
-%R = diag([2.4, 0.5] * 1e-5);  
+R = diag([17, 9] * 1e-5); 
 
 % Load parameters
 params = generate_params_cc();
