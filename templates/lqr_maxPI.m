@@ -6,6 +6,8 @@
 % Please see the LICENSE file that has been included as part of this package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%  TASK12
+
 function [H_LQR, h_LQR] = lqr_maxPI(Q, R, params)
     % Extract system matrices from params
     A = params.model.A; % [nx x nx]
