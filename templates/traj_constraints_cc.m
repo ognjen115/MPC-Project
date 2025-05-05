@@ -39,6 +39,19 @@ function [T1_max, T2_min, T2_max, P1_min, P1_max, P2_min, P2_max, input_cost, cs
         (P1_max > c.P1Max) || ...
         (P2_min < c.P2Min) || ...
         (P2_max > c.P2Max);
+
+    % === Print results ===
+    fprintf('    T1_max: %.2f (limit: %.2f)\n', T1_max, c.T1Max);
+    fprintf('    T2_min: %.2f (limit: %.2f), T2_max: %.2f (limit: %.2f)\n', T2_min, c.T2Min, T2_max, c.T2Max);
+    fprintf('    P1_min: %.2f (limit: %.2f), P1_max: %.2f (limit: %.2f)\n', P1_min, c.P1Min, P1_max, c.P1Max);
+    fprintf('    P2_min: %.2f (limit: %.2f), P2_max: %.2f (limit: %.2f)\n', P2_min, c.P2Min, P2_max, c.P2Max);
+    fprintf('    Input energy cost: %.4f\n', input_cost);
+
+    if cstr_viol
+        fprintf('    ❌ Constraint violation detected!\n');
+    else
+        fprintf('    ✅ All constraints satisfied.\n');
+    end
 end
 
 
