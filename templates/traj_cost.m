@@ -6,6 +6,8 @@
 % Please see the LICENSE file that has been included as part of this package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%  TASK9
+
 function cost = traj_cost(Xsim, Usim, Q, R)
     % Xsim: [nx x (N+1)] state trajectory
     % Usim: [nu x N] input trajectory
