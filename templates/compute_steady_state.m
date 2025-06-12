@@ -37,7 +37,6 @@ function [x_s, u_s] = compute_steady_state(params, d)
     constr = (ss_LHS * [xs; us] == ss_RHS);
     optimize(constr, [], []);
 
-    % Extract and fix output shapes/types
     x_s = full(double(reshape(value(xs), [], 1)));
     u_s = full(double(reshape(value(us), [], 1)));
 
