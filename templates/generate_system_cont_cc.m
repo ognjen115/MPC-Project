@@ -27,11 +27,11 @@ function [Ac, Bc, Bcd] = generate_system_cont_cc(params)
          a12/m2,        -(a12 + a23 + a2o)/m2, a23/m2;
          0,             a23/m3,          -(a23 + a3o)/m3 ];
 
-    % Input matrix Bc (cooling power only affects Zone 1 and Zone 2)
+    % Input matrix Bc
     Bc = [1/m1, 0;
           0, 1/m2;
           0, 0];
 
-    % Disturbance input matrix Bcd (diagonal with 1/mi)
+    % Disturbance input matrix Bcd
     Bcd = diag([1/m1, 1/m2, 1/m3]);
 end
