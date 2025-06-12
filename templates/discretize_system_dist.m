@@ -26,7 +26,7 @@ function [A, B, Bd] = discretize_system_dist(Ac, Bc, Bcd, params)
     B_full = sys_d.B;
 
     % Separate B and Bd from the full input matrix
-    nu = size(Bc, 2);  % number of control inputs
+    nu = size(Bc, 2); 
     B = B_full(:, 1:nu);
     Bd = B_full(:, nu+1:end);
 end
