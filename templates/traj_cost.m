@@ -9,12 +9,8 @@
 %%  TASK9
 
 function cost = traj_cost(Xsim, Usim, Q, R)
-    % Xsim: [nx x (N+1)] state trajectory
-    % Usim: [nu x N] input trajectory
-    % Q: [nx x nx] state cost
-    % R: [nu x nu] input cost
 
-    N = size(Usim, 2);  % number of steps
+    N = size(Usim, 2); 
     cost = 0;
 
     for k = 1:N
