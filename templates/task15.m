@@ -1,14 +1,9 @@
-% Task 15: Simulate and compare LQR and MPC for xA0 and xB0
+%% Task 15: Simulate and compare LQR and MPC for xA0 and xB0
 clear; clc;
 
 %% --- Generate base and delta parameters ---
 params_base = generate_params_cc();
 params = generate_params_delta_cc(params_base);
-
-% Debug: confirm x_s and u_s are valid
-disp('--- DEBUG: x_s and u_s ---');
-disp('x_s:'); disp(params.exercise.x_s);
-disp('u_s:'); disp(params.exercise.u_s);
 
 %% --- Q, R, N, initial conditions ---
 %%  Parameters from script
