@@ -30,12 +30,12 @@ classdef MPC_TE
             nu = size(B, 2);
         
             % Declare decision variables
-            x = sdpvar(nx, N+1);  % x0 to xN
-            U = cell(1, N);       % u0 to u_{N-1}
+            x = sdpvar(nx, N+1);  
+            U = cell(1, N);       
             for i = 1:N
                 U{i} = sdpvar(nu, 1);
             end
-            X0 = sdpvar(nx, 1);   % initial state parameter
+            X0 = sdpvar(nx, 1);   
         
             % Objective function
             objective = 0;
@@ -46,7 +46,7 @@ classdef MPC_TE
             % No terminal cost (instead we add x_N = 0)
             % Constraints
             constraints = [];
-            constraints = [constraints, x(:,1) == X0];  % initial condition
+            constraints = [constraints, x(:,1) == X0];  
         
             for i = 1:N
                 constraints = [constraints, x(:,i+1) == A*x(:,i) + B*U{i}];  % dynamics
@@ -57,7 +57,7 @@ classdef MPC_TE
             % Terminal state constraint: x_N = 0
             constraints = [constraints, x(:,N+1) == zeros(nx,1)];
         
-            % Also enforce state constraint at final step (if needed)
+            % Enforce state constraint at final step 
             constraints = [constraints, H_x * x(:,N+1) <= h_x];
 
             opts = sdpsettings('verbose',1,'solver','quadprog');
