@@ -19,21 +19,21 @@ function params_delta = generate_params_delta_cc(params)
 
     % ---------------- CONTINUE BELOW THIS LINE: -----------------
 
-    % ----- Compute disturbance vector d -----
-    alpha = [params.model.a1o; params.model.a2o; params.model.a3o];  % 3×1
-    To = params.exercise.To;                                        % scalar
-    eta = params.exercise.etaA;                                     % 3×1
+    % Compute disturbance vector d
+    alpha = [params.model.a1o; params.model.a2o; params.model.a3o];  
+    To = params.exercise.To;                                        
+    eta = params.exercise.etaA;                                     
     d = alpha * To + eta;
 
-    % ----- Compute steady-state -----
+    % Compute steady-state 
     [x_s, u_s] = compute_steady_state(params, d);
 
-    % ----- Shift initial conditions -----
+    % Shift initial conditions 
     params_delta.exercise.InitialConditionA = params.exercise.InitialConditionA - x_s;
     params_delta.exercise.InitialConditionB = params.exercise.InitialConditionB - x_s;
     params_delta.exercise.InitialConditionC = params.exercise.InitialConditionC - x_s;
 
-    % ----- Update constraints into delta form -----
+    % Update constraints into delta form 
     Hx = params.constraints.StateMatrix;
     hx = params.constraints.StateRHS;
     Hu = params.constraints.InputMatrix;
@@ -45,7 +45,7 @@ function params_delta = generate_params_delta_cc(params)
     params_delta.constraints.InputMatrix = Hu;
     params_delta.constraints.InputRHS = hu - Hu * u_s;
 
-    % ----- Save steady-state values -----
+    % Save steady-state values
     params_delta.exercise.x_s = x_s;
     params_delta.exercise.u_s = u_s;
 end
