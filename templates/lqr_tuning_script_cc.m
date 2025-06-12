@@ -33,10 +33,10 @@ Uabs = U + params.exercise.u_s;
 [T1_max, T2_min, T2_max, P1_min, P1_max, P2_min, P2_max, ~, violated] = traj_constraints_cc(Xabs, Uabs, params);
 
 % Evaluate convergence criteria
-x1_30 = abs(X(1, 31));   % Δx1(30)
-x1_60 = abs(X(1, 61));   % Δx1(60)
-x2_30 = abs(X(2, 31));   % Δx2(30)
-x2_60 = abs(X(2, 61));   % Δx2(60)
+x1_30 = abs(X(1, 31));   
+x1_60 = abs(X(1, 61));   
+x2_30 = abs(X(2, 31));   
+x2_60 = abs(X(2, 61));   
 
 % Define convergence thresholds
 thresh_x1_30 = 0.3;
