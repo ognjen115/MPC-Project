@@ -1,16 +1,11 @@
 % Task 20: Simulate and compare MPC, MPC-TE, and MPC-TS for xA0 and xB0
 clear; clc;
 
-%% --- Generate base and delta parameters ---
+%% Generate base and delta parameters 
 params_base = generate_params_cc();
 params = generate_params_delta_cc(params_base);
 
-% Debug: confirm x_s and u_s are valid
-disp('--- DEBUG: x_s and u_s ---');
-disp('x_s:'); disp(params.exercise.x_s);
-disp('u_s:'); disp(params.exercise.u_s);
-
-%% --- Q, R, N, initial conditions ---
+%% Q, R, N, initial conditions 
 Q = diag([1; 1; 0]);
 R = diag([2.4e-5; 0.5e-5]);
 %N = 30;
@@ -22,17 +17,17 @@ xB0 = params.exercise.InitialConditionB;
 x_s = params.exercise.x_s;
 u_s = params.exercise.u_s;
 
-%% --- Terminal set for MPC-TS ---
+%% Terminal set for MPC-TS
 [~, P_lqr, ~] = dlqr(params.model.A, params.model.B, Q, R);
 H_ts = params.constraints.StateMatrix;
 h_ts = params.constraints.StateRHS;
 
-%% --- Create controllers ---
+%% Create controllers 
 ctrl_mpc   = MPC(Q, R, N, params);
 ctrl_te    = MPC_TE(Q, R, N, params);
 ctrl_ts    = MPC_TS(Q, R, N, H_ts, h_ts, params);
 
-%% --- Simulate ---
+%% Simulate
 [Xsim_mpc_A, Usim_mpc_A, ~] = simulate(xA0, ctrl_mpc, params);
 [Xsim_mpc_B, Usim_mpc_B, ~] = simulate(xB0, ctrl_mpc, params);
 [Xsim_te_A,  Usim_te_A,  ~] = simulate(xA0, ctrl_te, params);
@@ -40,7 +35,7 @@ ctrl_ts    = MPC_TS(Q, R, N, H_ts, h_ts, params);
 [Xsim_ts_A,  Usim_ts_A,  ~] = simulate(xA0, ctrl_ts, params);
 [Xsim_ts_B,  Usim_ts_B,  ~] = simulate(xB0, ctrl_ts, params);
 
-%% --- Compute costs ---
+%% Compute costs 
 J_mpc_A = traj_cost(Xsim_mpc_A, Usim_mpc_A, Q, R);
 J_mpc_B = traj_cost(Xsim_mpc_B, Usim_mpc_B, Q, R);
 J_te_A  = traj_cost(Xsim_te_A,  Usim_te_A,  Q, R);
@@ -56,7 +51,7 @@ fprintf('  MPC    (xB0): %.4f\n', J_mpc_B);
 fprintf('  MPC-TE (xB0): %.4f\n', J_te_B);
 fprintf('  MPC-TS (xB0): %.4f\n', J_ts_B);
 
-%% --- Check constraints ---
+%% Check constraints 
 c = params.constraints;
 
 fprintf('\nConstraint satisfaction:\n');
@@ -85,7 +80,7 @@ fprintf('  MPC-TS (xB0):\n');
 [Xb, Ub] = traj_delta2abs(Xsim_ts_B, Usim_ts_B, x_s, u_s);
 traj_constraints_cc(Xb, Ub, params);
 
-%% --- Plot results (same style as task15) ---
+%% Plot results 
 [X_mpc_A, U_mpc_A] = traj_delta2abs(Xsim_mpc_A, Usim_mpc_A, x_s, u_s);
 [X_mpc_B, U_mpc_B] = traj_delta2abs(Xsim_mpc_B, Usim_mpc_B, x_s, u_s);
 [X_te_A,  U_te_A]  = traj_delta2abs(Xsim_te_A,  Usim_te_A,  x_s, u_s);
