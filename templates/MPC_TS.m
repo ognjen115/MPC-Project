@@ -17,7 +17,7 @@ classdef MPC_TS
         function obj = MPC_TS(Q,R,N,H,h,params)
             
             % ADD STUFF HERE
-                        % Extract system and constraint data
+            % Extract system and constraint data
             A = params.model.A;
             B = params.model.B;
             H_x = params.constraints.StateMatrix;
@@ -44,7 +44,7 @@ classdef MPC_TS
             for i = 1:N
                 objective = objective + x(:,i)' * Q * x(:,i) + U{i}' * R * U{i};
             end
-            objective = objective + x(:,N+1)' * P * x(:,N+1);  % terminal cost
+            objective = objective + x(:,N+1)' * P * x(:,N+1);  
 
             % Constraints
             constraints = [];
@@ -54,7 +54,7 @@ classdef MPC_TS
                 constraints = [constraints, H_x * x(:,i) <= h_x];
                 constraints = [constraints, H_u * U{i} <= h_u];
             end
-            constraints = [constraints, H * x(:,N+1) <= h];  % terminal set constraint
+            constraints = [constraints, H * x(:,N+1) <= h];  
 
 
             opts = sdpsettings('verbose',1,'solver','quadprog');
