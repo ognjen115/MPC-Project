@@ -35,6 +35,7 @@ params = compute_tightening(K_tube, H_tube, h_tube, params);
 
 params_robust_tube = params;
 x0 = params.exercise.InitialConditionB;
+fprintf('Initial condition: %s\n', mat2str(x0, 3));
 mpc = MPC_TUBE(Q, R, N, H_N, h_N, H_tube, h_tube, K_tube, params_robust_tube);
 Wsim = generate_disturbances_cc(params_robust_tube);
 [Xsim, Usim, ctrl_info] = simulate_uncertain(x0, mpc, Wsim, params);
